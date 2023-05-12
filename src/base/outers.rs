@@ -1,11 +1,14 @@
 use std::hash::Hash;
+use std::fmt::Debug;
+use std::num::TryFromIntError;
 
 /**
 An identifier where the next value can be retrieved without a result.
 
 This trait should be implemented once for every [IdentifiedBy] implementation
  */
-pub trait Identifier: Clone + Copy + PartialEq + Eq + Hash {
+pub trait Identifier: Clone + Copy + PartialEq + Eq + Hash + Debug
+    + TryFrom<usize,Error = TryFromIntError> + TryInto<usize,Error = TryFromIntError> {
     /// Get the first id of this type
     fn first() -> Self;
     /// Get the next id, after this one
@@ -28,7 +31,6 @@ pub trait IdentifiedBy<T: Identifier> {
      */
     fn set_id(&mut self,id: T);
 }
-pub fn as_identified_by<I: Identifier + Hash, T: IdentifiedBy<I> + Hash>(v: &T) -> &(impl IdentifiedBy<I> + Hash) { v }
 
 impl <T: Identifier> Eq for dyn IdentifiedBy<T> {}
 impl <T: Identifier> PartialEq for dyn IdentifiedBy<T> {

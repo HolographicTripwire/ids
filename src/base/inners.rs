@@ -1,4 +1,6 @@
 use std::hash::Hash;
+use std::fmt::Debug;
+use std::num::TryFromIntError;
 
 /**
 [IdInner] is a type which wraps an [IdImpl] and provides it with an error message.
@@ -23,13 +25,27 @@ impl <'a, T: IdImpl> IdInner<'a, T> {
             Ok(next) => Self { 
                 inner_type: next,
                 out_of_ids_msg: self.out_of_ids_msg
-            },
-            Err(()) => panic!("{}", self.out_of_ids_msg)
+            }, Err(()) => panic!("{}", self.out_of_ids_msg)
         }
     }
 }
 
-pub trait IdImpl: Clone + Copy + PartialEq + Eq + Hash {
+impl <'a, T: IdImpl> TryInto<usize> for IdInner<'a,T> {
+    type Error = ();
+    fn try_into(self) -> Result<usize, Self::Error> {
+        match self.inner_type.try_into() {
+            Ok(v) => Ok(v),
+            Err(_) => Err(()),
+        }
+    }
+}
+
+impl <'a, T: IdImpl> From<usize> for IdInner<'a,T> {
+    fn from(val: usize) -> Self { val.into() }
+}
+
+pub trait IdImpl: Clone + Copy + PartialEq + Eq + Hash + 
+    TryFrom<usize, Error = TryFromIntError> + TryInto<usize, Error = TryFromIntError> {
     /// Get the first id of this type
     fn first() -> Self;
     /// Get the next id, after this one

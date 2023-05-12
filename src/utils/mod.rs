@@ -1,10 +1,7 @@
-mod trackers;
-mod linkers;
+pub mod trackers;
+pub mod linkers;
 
 use std::collections::HashMap;
-
-pub use trackers::IdTracker;
-pub use linkers::IdLinker;
 
 use crate::Identifier;
 
