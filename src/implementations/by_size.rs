@@ -1,7 +1,8 @@
 use std::num::TryFromIntError;
-use std::fmt::Debug;
 
 use crate::base::IdImpl;
+
+const TRY_FROM_ERR: &str = "The err branch of an IdImpl's TryFrom was executed. The rust analyser claims that this result is impossible.";
 
 /// An 8-bit [IdImpl]
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
@@ -26,9 +27,9 @@ impl TryFrom<usize> for Id8 {
 impl TryFrom<Id8> for usize {
     type Error = TryFromIntError;
     fn try_from(value: Id8) -> Result<Self, Self::Error> {
-        match usize::try_from(value) {
+        match usize::try_from(value.val) {
             Ok(val) => Ok(val),
-            Err(err) => Err(err),
+            Err(_e) => { panic!("{}", TRY_FROM_ERR) },
         }
     }
 }
@@ -56,9 +57,9 @@ impl TryFrom<usize> for Id16 {
 impl TryFrom<Id16> for usize {
     type Error = TryFromIntError;
     fn try_from(value: Id16) -> Result<Self, Self::Error> {
-        match usize::try_from(value) {
+        match usize::try_from(value.val) {
             Ok(val) => Ok(val),
-            Err(err) => Err(err),
+            Err(_e) => { panic!("{}", TRY_FROM_ERR) },
         }
     }
 }
@@ -86,9 +87,9 @@ impl TryFrom<usize> for Id32 {
 impl TryFrom<Id32> for usize {
     type Error = TryFromIntError;
     fn try_from(value: Id32) -> Result<Self, Self::Error> {
-        match usize::try_from(value) {
+        match usize::try_from(value.val) {
             Ok(val) => Ok(val),
-            Err(err) => Err(err),
+            Err(_e) => { panic!("{}", TRY_FROM_ERR) },
         }
     }
 }
@@ -116,9 +117,9 @@ impl TryFrom<usize> for Id64 {
 impl TryFrom<Id64> for usize {
     type Error = TryFromIntError;
     fn try_from(value: Id64) -> Result<Self, Self::Error> {
-        match usize::try_from(value) {
+        match usize::try_from(value.val) {
             Ok(val) => Ok(val),
-            Err(err) => Err(err),
+            Err(_e) => { panic!("{}", TRY_FROM_ERR) },
         }
     }
 }
@@ -146,9 +147,9 @@ impl TryFrom<usize> for Id128 {
 impl TryFrom<Id128> for usize {
     type Error = TryFromIntError;
     fn try_from(value: Id128) -> Result<Self, Self::Error> {
-        match usize::try_from(value) {
+        match usize::try_from(value.val) {
             Ok(val) => Ok(val),
-            Err(err) => Err(err),
+            Err(_e) => { panic!("{}", TRY_FROM_ERR) },
         }
     }
 }

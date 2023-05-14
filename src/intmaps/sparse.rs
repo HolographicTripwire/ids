@@ -2,7 +2,7 @@ use std::{hash::Hash, collections::HashMap};
 
 use super::IntMap;
 
-struct SparseIntMap<K: Hash> {
+pub struct SparseIntMap<K: Hash> {
     inner: HashMap<usize,K>,
     counter: usize,
 }

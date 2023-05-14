@@ -1,7 +1,7 @@
 use super::IntMap;
 use std::{collections::HashMap};
 
-struct DenseIntMap<V: Clone> {
+pub struct DenseIntMap<V: Clone> {
     inner: Vec<Option<V>>,
     counter: usize,
 }
@@ -62,5 +62,11 @@ impl <V: Clone> IntMap<V> for DenseIntMap<V> {
                 counter: flattened.len()
             }, mapping
         ))
+    }
+}
+
+impl <V: Clone> Default for DenseIntMap<V> {
+    fn default() -> Self {
+        Self { inner: Default::default(), counter: Default::default() }
     }
 }
