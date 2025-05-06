@@ -1,9 +1,8 @@
 mod sparse;
 mod dense;
 
-use std::{collections::HashMap};
+use std::collections::HashMap;
 pub use dense::DenseIntMap;
-pub use sparse::SparseIntMap;
 
 pub trait IntMap<V> {
     fn add(&mut self, elem: V) -> usize;

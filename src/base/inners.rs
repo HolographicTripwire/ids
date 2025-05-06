@@ -6,7 +6,7 @@ use std::num::TryFromIntError;
 
 This should only be used as part of [Id] objects.
  */
-#[derive(Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
 pub struct IdInner<'a, T: IdImpl> {
     inner_type: T,
     out_of_ids_msg: &'a str,

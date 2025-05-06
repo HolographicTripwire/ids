@@ -2,9 +2,9 @@ use std::{sync::{Mutex, Arc}, collections::HashMap};
 
 use crate::{Identifier, IdentifiedBy, intmaps::DenseIntMap, UpdatableIdStore};
 
-use super::{inner::{IdTrackerInner}, IdTracker};
+use super::{inner::IdTrackerInner, IdTracker};
 
-struct DenseIdTracker<I: Identifier, T: IdentifiedBy<I>> {
+pub struct DenseIdTracker<I: Identifier, T: IdentifiedBy<I>> {
     inner: IdTrackerInner<I,T,DenseIntMap<Arc<Mutex<T>>>>
 }
 

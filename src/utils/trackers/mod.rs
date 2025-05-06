@@ -2,8 +2,10 @@ mod inner;
 mod dense;
 mod sparse;
 
-use std::{collections::HashMap};
+use std::collections::HashMap;
 use std::sync::{Mutex, Arc};
+
+pub use dense::DenseIdTracker;
 
 use crate::{IdentifiedBy, Identifier, UpdatableIdStore};
 
