@@ -6,7 +6,7 @@ const TRY_FROM_ERR: &str = "The err branch of an IdImpl's TryFrom was executed. 
 
 /// An 8-bit [IdImpl]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
-pub struct Id8(u8);
+pub struct Id8(pub u8);
 impl IdImpl for Id8 { 
     fn first() -> Self { Self(0) }
     fn next(&self) -> Result<Self,()> {
@@ -36,7 +36,7 @@ impl TryFrom<Id8> for usize {
 
 /// A 16-bit [IdImpl]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
-pub struct Id16(u16);
+pub struct Id16(pub u16);
 impl IdImpl for Id16 { 
     fn first() -> Self { Self(0) }
     fn next(&self) -> Result<Self,()> {
@@ -66,7 +66,7 @@ impl TryFrom<Id16> for usize {
 
 /// A 32-bit [IdImpl]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
-pub struct Id32(u32);
+pub struct Id32(pub u32);
 impl IdImpl for Id32 { 
     fn first() -> Self { Self(0) }
     fn next(&self) -> Result<Self,()> {
@@ -96,7 +96,7 @@ impl TryFrom<Id32> for usize {
 
 /// An 64-bit [IdImpl]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
-pub struct Id64(u64);
+pub struct Id64(pub u64);
 impl IdImpl for Id64 { 
     fn first() -> Self { Self(0) }
     fn next(&self) -> Result<Self,()> {
@@ -126,7 +126,7 @@ impl TryFrom<Id64> for usize {
 
 /// An 128-bit [IdImpl]
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Hash)]
-pub struct Id128(u128);
+pub struct Id128(pub u128);
 impl IdImpl for Id128 {
     fn first() -> Self { Self(0) }
     fn next(&self) -> Result<Self,()> {

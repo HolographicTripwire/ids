@@ -1,6 +1,6 @@
 use std::marker::PhantomData;
 use std::num::TryFromIntError;
-use std::{collections::HashMap};
+use std::collections::HashMap;
 use std::sync::{Mutex, Arc};
 
 use crate::intmaps::IntMap;
